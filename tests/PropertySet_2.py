@@ -1,7 +1,7 @@
-# 
+#
 # LSST Data Management System
 # Copyright 2008, 2009, 2010 LSST Corporation.
-# 
+#
 # This product includes software developed by the
 # LSST Project (http://www.lsst.org/).
 #
@@ -9,14 +9,14 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
-# You should have received a copy of the LSST License Statement and 
-# the GNU General Public License along with this program.  If not, 
+#
+# You should have received a copy of the LSST License Statement and
+# the GNU General Public License along with this program.  If not,
 # see <http://www.lsstcorp.org/LegalNotices/>.
 #
 
@@ -26,6 +26,7 @@ import numpy
 import lsst.utils.tests as utilsTests
 import lsst.daf.base as dafBase
 import lsst.pex.exceptions as pexExcept
+
 
 class PropertySetTestCase(unittest.TestCase):
     """A test case for PropertySet."""
@@ -54,7 +55,7 @@ class PropertySetTestCase(unittest.TestCase):
         self.assertEqual(ps.typeOf("int"), dafBase.PropertySet.TYPE_Int)
         self.assertEqual(ps.getInt("int"), 2008)
         self.assertEqual(ps.typeOf("int64_t"),
-                dafBase.PropertySet.TYPE_LongLong)
+                         dafBase.PropertySet.TYPE_LongLong)
         self.assertEqual(ps.getLongLong("int64_t"), 0xfeeddeadbeefL)
         self.assertEqual(ps.typeOf("float"), dafBase.PropertySet.TYPE_Float)
         self.assertAlmostEqual(ps.getFloat("float"), 3.14159, 6)
@@ -88,7 +89,7 @@ class PropertySetTestCase(unittest.TestCase):
         self.assertEqual(ps.typeOf("int"), dafBase.PropertySet.TYPE_Int)
         self.assertEqual(ps.getInt("int"), 2008)
         self.assertEqual(ps.typeOf("int64_t"),
-                dafBase.PropertySet.TYPE_LongLong)
+                         dafBase.PropertySet.TYPE_LongLong)
         self.assertEqual(ps.getLongLong("int64_t"), 0xfeeddeadbeefL)
         self.assertEqual(ps.typeOf("float"), dafBase.PropertySet.TYPE_Float)
         self.assertAlmostEqual(ps.getFloat("float"), 3.14159, 6)
@@ -161,7 +162,7 @@ class PropertySetTestCase(unittest.TestCase):
         ps = dafBase.PropertySet()
         ps.set("dt", dafBase.DateTime("20090402T072639.314159265Z"))
         self.assertEqual(ps.toString(),
-                "dt = 2009-04-02T07:26:39.314159265Z\n")
+                         "dt = 2009-04-02T07:26:39.314159265Z\n")
 
     def testGetScalarThrow(self):
         ps = dafBase.PropertySet()
@@ -181,6 +182,7 @@ class PropertySetTestCase(unittest.TestCase):
         ps.set("c.a", 2)
         self.assertEqual(ps.get("b.a"), 2)
         self.assertEqual(ps.get("b").get("a"), 2)
+
 
 class FlatTestCase(unittest.TestCase):
     """A test case for flattened PropertySets."""
@@ -209,7 +211,7 @@ class FlatTestCase(unittest.TestCase):
         self.assertEqual(ps.typeOf("int"), dafBase.PropertySet.TYPE_Int)
         self.assertEqual(ps.getInt("int"), 2008)
         self.assertEqual(ps.typeOf("int64_t"),
-                dafBase.PropertySet.TYPE_LongLong)
+                         dafBase.PropertySet.TYPE_LongLong)
         self.assertEqual(ps.getLongLong("int64_t"), 0xfeeddeadbeefL)
         self.assertEqual(ps.typeOf("float"), dafBase.PropertySet.TYPE_Float)
         self.assertAlmostEqual(ps.getFloat("float"), 3.14159, 6)
@@ -291,7 +293,7 @@ class FlatTestCase(unittest.TestCase):
         ps = dafBase.PropertySet(flat=True)
         ps.set("dt", dafBase.DateTime("20090402T072639.314159265Z"))
         self.assertEqual(ps.toString(),
-                "dt = 2009-04-02T07:26:39.314159265Z\n")
+                         "dt = 2009-04-02T07:26:39.314159265Z\n")
 
     def testGetScalarThrow(self):
         ps = dafBase.PropertySet(flat=True)
@@ -318,6 +320,7 @@ class FlatTestCase(unittest.TestCase):
         self.assertEqual(ps.get("b.c"), 20)
         self.assertEqual(ps.exists("b"), False)
 
+
 def suite():
     """Returns a suite containing all the test cases in this module."""
 
@@ -328,6 +331,7 @@ def suite():
     suites += unittest.makeSuite(utilsTests.MemoryTestCase)
 
     return unittest.TestSuite(suites)
+
 
 def run(exit=False):
     """Run the tests"""
@@ -351,7 +355,7 @@ if __name__ == '__main__':
 #     ps.set<std::string>("char*", "foo");
 #     ps.set("char*2", "foo2");
 #     ps.set("string", std::string("bar"));
-# 
+#
 #     BOOST_CHECK_THROW(ps.get<bool>("short"), boost::bad_any_cast);
 #     BOOST_CHECK_THROW(ps.get<bool>("int"), boost::bad_any_cast);
 #     BOOST_CHECK_THROW(ps.get<short>("int"), boost::bad_any_cast);
@@ -362,8 +366,8 @@ if __name__ == '__main__':
 #     BOOST_CHECK_THROW(ps.get<float>("double"), boost::bad_any_cast);
 #     BOOST_CHECK_THROW(ps.get<std::string>("int"), boost::bad_any_cast);
 # }
-# 
-# 
+#
+#
 # BOOST_AUTO_TEST_CASE(addVector) {
 #     dafBase::PropertySet ps;
 #     std::vector<int> v;
@@ -371,13 +375,13 @@ if __name__ == '__main__':
 #     v.push_back(2008);
 #     v.push_back(1);
 #     ps.set("ints", v);
-# 
+#
 #     std::vector<int> vv;
 #     vv.push_back(-42);
 #     vv.push_back(-2008);
 #     vv.push_back(-1);
 #     ps.add("ints", vv);
-# 
+#
 #     std::vector<int> w = ps.getArray<int>("ints");
 #     BOOST_CHECK_EQUAL(w.size(), 6U);
 #     for (int i = 0; i < 3; ++i) {
@@ -385,7 +389,7 @@ if __name__ == '__main__':
 #         BOOST_CHECK_EQUAL(vv[i], w[i + 3]);
 #     }
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(arrayProperties) {
 #     dafBase::PropertySet ps;
 #     std::vector<int> v;
@@ -396,7 +400,7 @@ if __name__ == '__main__':
 #     ps.set("int", 365);
 #     ps.set("ints2", -42);
 #     ps.add("ints2", -2008);
-# 
+#
 #     BOOST_CHECK_EQUAL(ps.isArray("ints"), true);
 #     BOOST_CHECK_EQUAL(ps.isArray("int"), false);
 #     BOOST_CHECK_EQUAL(ps.isArray("ints2"), true);
@@ -407,11 +411,11 @@ if __name__ == '__main__':
 #     BOOST_CHECK(ps.typeOf("int") == typeid(int));
 #     BOOST_CHECK(ps.typeOf("ints2") == typeid(int));
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(hierarchy) {
 #     dafBase::PropertySet ps;
 #     dafBase::PropertySet::Ptr psp(new dafBase::PropertySet);
-# 
+#
 #     psp->set("pre", 1);
 #     ps.set("ps1", psp);
 #     psp->set("post", 2);
@@ -421,7 +425,7 @@ if __name__ == '__main__':
 #     ps.set("ps2.minus", -10.24);
 #     ps.set("ps3.sub1", "foo");
 #     ps.set("ps3.sub2", "bar");
-# 
+#
 #     BOOST_CHECK(ps.exists("ps1"));
 #     BOOST_CHECK(ps.exists("ps2"));
 #     BOOST_CHECK(ps.exists("ps3"));
@@ -431,7 +435,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK(ps.exists("ps2.minus"));
 #     BOOST_CHECK(ps.exists("ps3.sub1"));
 #     BOOST_CHECK(ps.exists("ps3.sub2"));
-# 
+#
 #     BOOST_CHECK(ps.isPropertySetPtr("ps1"));
 #     BOOST_CHECK(ps.isPropertySetPtr("ps2"));
 #     BOOST_CHECK(ps.isPropertySetPtr("ps3"));
@@ -442,7 +446,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK(!ps.isPropertySetPtr("ps2.minus"));
 #     BOOST_CHECK(!ps.isPropertySetPtr("ps3.sub1"));
 #     BOOST_CHECK(!ps.isPropertySetPtr("ps3.sub2"));
-# 
+#
 #     dafBase::PropertySet::Ptr psp1 = ps.get<dafBase::PropertySet::Ptr>("ps1");
 #     dafBase::PropertySet::Ptr psp2 = ps.get<dafBase::PropertySet::Ptr>("ps2");
 #     dafBase::PropertySet::Ptr psp3 = ps.get<dafBase::PropertySet::Ptr>("ps3");
@@ -462,7 +466,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(psp2->get<double>("minus"), -10.24);
 #     BOOST_CHECK_EQUAL(psp3->get<std::string>("sub1"), "foo");
 #     BOOST_CHECK_EQUAL(psp3->get<std::string>("sub2"), "bar");
-# 
+#
 #     // Make sure checking a subproperty doesn't create it.
 #     BOOST_CHECK(!ps.exists("ps2.pre"));
 #     BOOST_CHECK(!ps.exists("ps2.pre"));
@@ -476,7 +480,7 @@ if __name__ == '__main__':
 #     // Make sure checking a subproperty doesn't create its parent.
 #     BOOST_CHECK(!ps.exists("ps4"));
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(variousThrows) {
 #     dafBase::PropertySet ps;
 #     ps.set("int", 42);
@@ -499,7 +503,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_NO_THROW(ps.remove("foo.bar"));
 #     BOOST_CHECK_NO_THROW(ps.remove("int.sub"));
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(names) {
 #     dafBase::PropertySet ps;
 #     ps.set("ps1.pre", 1);
@@ -508,10 +512,10 @@ if __name__ == '__main__':
 #     ps.set("double", 3.14);
 #     ps.set("ps2.plus", 10.24);
 #     ps.set("ps2.minus", -10.24);
-# 
+#
 #     BOOST_CHECK_EQUAL(ps.nameCount(), 4U);
 #     BOOST_CHECK_EQUAL(ps.nameCount(false), 8U);
-# 
+#
 #     std::vector<std::string> v = ps.names();
 #     BOOST_CHECK_EQUAL(v.size(), 4U);
 #     std::sort(v.begin(), v.end());
@@ -531,7 +535,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(v[6], "ps2.minus");
 #     BOOST_CHECK_EQUAL(v[7], "ps2.plus");
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(paramNames) {
 #     dafBase::PropertySet ps;
 #     ps.set("ps1.pre", 1);
@@ -540,7 +544,7 @@ if __name__ == '__main__':
 #     ps.set("double", 3.14);
 #     ps.set("ps2.plus", 10.24);
 #     ps.set("ps2.minus", -10.24);
-# 
+#
 #     std::vector<std::string> v = ps.paramNames();
 #     BOOST_CHECK_EQUAL(v.size(), 2U);
 #     std::sort(v.begin(), v.end());
@@ -556,7 +560,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(v[4], "ps2.minus");
 #     BOOST_CHECK_EQUAL(v[5], "ps2.plus");
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(propertySetNames) {
 #     dafBase::PropertySet ps;
 #     ps.set("ps1.pre", 1);
@@ -566,7 +570,7 @@ if __name__ == '__main__':
 #     ps.set("ps2.plus", 10.24);
 #     ps.set("ps2.minus", -10.24);
 #     ps.set("ps3.sub.subsub", "foo");
-# 
+#
 #     std::vector<std::string> v = ps.propertySetNames();
 #     BOOST_CHECK_EQUAL(v.size(), 3U);
 #     std::sort(v.begin(), v.end());
@@ -581,7 +585,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(v[2], "ps3");
 #     BOOST_CHECK_EQUAL(v[3], "ps3.sub");
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(getAs) {
 #     dafBase::PropertySet ps;
 #     ps.set("bool", true);
@@ -600,7 +604,7 @@ if __name__ == '__main__':
 #     dafBase::PropertySet::Ptr psp(new dafBase::PropertySet);
 #     psp->set("bottom", "x");
 #     ps.set("top", psp);
-# 
+#
 #     BOOST_CHECK_EQUAL(ps.getAsBool("bool"), true);
 #     BOOST_CHECK_THROW(ps.getAsBool("char"), boost::bad_any_cast);
 #     BOOST_CHECK_EQUAL(ps.getAsInt("bool"), 1);
@@ -633,7 +637,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_THROW(ps.getAsPropertySetPtr("top.bottom"),
 #                       boost::bad_any_cast);
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(combine) {
 #     dafBase::PropertySet ps;
 #     ps.set("ps1.pre", 1);
@@ -643,16 +647,16 @@ if __name__ == '__main__':
 #     ps.set("ps2.plus", 10.24);
 #     ps.set("ps2.minus", -10.24);
 #     ps.set("ps3.sub.subsub", "foo");
-# 
+#
 #     dafBase::PropertySet::Ptr psp(new dafBase::PropertySet);
 #     psp->set("ps1.pre", 3);
 #     psp->add("ps1.pre", 4);
 #     psp->set("int", 2008);
 #     psp->set("ps2.foo", "bar");
 #     psp->set("ps4.top", "bottom");
-# 
+#
 #     ps.combine(psp);
-# 
+#
 #     BOOST_CHECK(ps.isPropertySetPtr("ps1"));
 #     BOOST_CHECK(ps.isPropertySetPtr("ps2"));
 #     BOOST_CHECK(ps.isPropertySetPtr("ps3"));
@@ -682,18 +686,18 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(v[0], 42);
 #     BOOST_CHECK_EQUAL(v[1], 2008);
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(combineThrow) {
 #     dafBase::PropertySet ps;
 #     ps.set("int", 42);
-# 
+#
 #     dafBase::PropertySet::Ptr psp(new dafBase::PropertySet);
 #     psp->set("int", 3.14159);
-# 
+#
 #     BOOST_CHECK_THROW(ps.combine(psp),
 #                       lsst::pex::exceptions::DomainError);
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(remove) {
 #     dafBase::PropertySet ps;
 #     ps.set("int", 42);
@@ -702,7 +706,7 @@ if __name__ == '__main__':
 #     ps.set("ps1.minus", -1);
 #     ps.set("ps1.zero", 0);
 #     BOOST_CHECK_EQUAL(ps.nameCount(false), 6U);
-# 
+#
 #     ps.remove("int");
 #     BOOST_CHECK(!ps.exists("int"));
 #     BOOST_CHECK_EQUAL(ps.getAsDouble("double"), 3.14159);
@@ -710,7 +714,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(ps.getAsInt("ps1.minus"), -1);
 #     BOOST_CHECK_EQUAL(ps.getAsInt("ps1.zero"), 0);
 #     BOOST_CHECK_EQUAL(ps.nameCount(false), 5U);
-# 
+#
 #     ps.remove("ps1.zero");
 #     BOOST_CHECK(!ps.exists("int"));
 #     BOOST_CHECK_EQUAL(ps.getAsDouble("double"), 3.14159);
@@ -718,7 +722,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(ps.getAsInt("ps1.plus"), 1);
 #     BOOST_CHECK_EQUAL(ps.getAsInt("ps1.minus"), -1);
 #     BOOST_CHECK_EQUAL(ps.nameCount(false), 4U);
-# 
+#
 #     ps.remove("ps1");
 #     BOOST_CHECK(!ps.exists("int"));
 #     BOOST_CHECK_EQUAL(ps.getAsDouble("double"), 3.14159);
@@ -727,7 +731,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK(!ps.exists("ps1.minus"));
 #     BOOST_CHECK(!ps.exists("ps1.zero"));
 #     BOOST_CHECK_EQUAL(ps.nameCount(false), 1U);
-# 
+#
 #     ps.remove("double");
 #     BOOST_CHECK(!ps.exists("int"));
 #     BOOST_CHECK(!ps.exists("double"));
@@ -737,14 +741,14 @@ if __name__ == '__main__':
 #     BOOST_CHECK(!ps.exists("ps1.zero"));
 #     BOOST_CHECK_EQUAL(ps.nameCount(false), 0U);
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(deepCopy) {
 #     dafBase::PropertySet ps;
 #     ps.set("int", 42);
 #     dafBase::PropertySet::Ptr psp(new dafBase::PropertySet);
 #     psp->set("bottom", "x");
 #     ps.set("top", psp);
-# 
+#
 #     dafBase::PropertySet::Ptr psp2 = ps.deepCopy();
 #     BOOST_CHECK(psp2->exists("int"));
 #     BOOST_CHECK(psp2->exists("top.bottom"));
@@ -760,7 +764,7 @@ if __name__ == '__main__':
 #     BOOST_CHECK_EQUAL(psp2->getAsInt("int"), 42);
 #     BOOST_CHECK_EQUAL(psp2->getAsString("top.bottom"), "x");
 # }
-# 
+#
 # BOOST_AUTO_TEST_CASE(toString) {
 #     dafBase::PropertySet ps;
 #     ps.set("bool", true);
@@ -784,7 +788,7 @@ if __name__ == '__main__':
 #     ps.add("v", 10);
 #     ps.add("v", 9);
 #     ps.add("v", 8);
-# 
+#
 #     BOOST_CHECK_EQUAL(ps.toString(),
 #         "bool = 1\n"
 #         "char = '*'\n"
